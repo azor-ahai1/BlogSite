@@ -42,7 +42,7 @@ function AllPosts() {
     return (
         <div className='w-full py-8'>
             <div className="text-center">
-                {curUser && <div>{curUser.email}</div>}
+                {curUser && <div>{curUser.username}</div>}
             </div>
             <Container>
                 <div className='flex flex-wrap'>

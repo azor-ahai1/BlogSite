@@ -15,6 +15,8 @@ import Signup from './pages/Signup'
 import EditPost from "./pages/EditPost";
 import Post from "./pages/Post";
 import AllPosts from "./pages/AllPosts";
+import User from './pages/User'
+import AllUsers from './pages/AllUsers'
 
 
 const router = createBrowserRouter([
@@ -73,6 +75,22 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+        {
+            path: "/user/:username",
+            element:( 
+                <Protected authentication>
+                    <User />
+                </Protected>
+            ),
+        },
+        {
+            path: "/all-users",
+            element:( 
+                <Protected authentication>
+                    <AllUsers />
+                </Protected>
+            ),
+        }
     ],
 },
 ])
