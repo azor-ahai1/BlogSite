@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import { Container, PostCard } from "../components/index";
-import appwriteService from "../appwrite/config"
+import React, { useState, useEffect } from "react";
+import { Container, PostCard } from "../components";
+import appwriteService from "../appwrite/config";
 
-function AllPosts(){
-
+function AllPosts() {
     const [posts, setPosts] = useState([]);
+    
     // useEffect(() => {}, [])
 
     // appwriteService.getPosts([]).then((posts) => {
@@ -12,8 +12,6 @@ function AllPosts(){
     //         setPosts(posts.documents)
     //     }
     // })
-
-    
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -25,19 +23,19 @@ function AllPosts(){
         fetchPosts();
     }, []);
 
-    return(
+    return (
         <div className="w-full py-8">
             <Container>
-                <div className="flex flex-wrap">
+                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {posts.map((post) => (
-                        <div key={post.$id} className="p-2 w-1/4"> 
-                                <PostCard {...post} />
-                        </div> 
+                        <div key={post.$id} className="w-full h-full">
+                            <PostCard {...post} />
+                        </div>
                     ))}
-                </div>    
+                </div>
             </Container>
         </div>
-    )
+    );
 }
 
-export default AllPosts
+export default AllPosts;

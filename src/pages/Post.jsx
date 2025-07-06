@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
-import { Button, Container } from "../components/index";
+import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
@@ -33,34 +33,37 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
+        <div className="py-8 px-4">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-gray-400">
+                <div className="w-full mb-6">
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
-                        className="rounded-xl"
+                        className="w-full max-h-[500px] object-cover rounded-xl shadow-lg"
                     />
-
                     {isAuthor && (
-                        <div className="absolute right-6 top-6">
+                        <div className="flex flex-col sm:flex-row gap-2 mt-4">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
+                                <Button bgColor="bg-green-500" className="mr-2">
                                     Edit
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
+                            <Button bgColor="bg-red-500" className="w-fit" onClick={deletePost}>
                                 Delete
                             </Button>
                         </div>
                     )}
                 </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+
+                <div className="mb-6">
+                    <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+                        {post.title}
+                    </h1>
                 </div>
-                <div className="browser-css">
+
+                <div className="prose max-w-none prose-lg prose-slate dark:prose-invert">
                     {parse(post.content)}
-                    </div>
+                </div>
             </Container>
         </div>
     ) : null;

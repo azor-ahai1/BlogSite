@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import { Container, UserCard } from "../components/index";
-import authService from "../appwrite/auth"
+import React, { useState, useEffect } from "react";
+import { Container, UserCard } from "../components";
+import authService from "../appwrite/auth";
 
-function AllUsers(){
-
+function AllUsers() {
     const [users, setUsers] = useState([]);
+
     // useEffect(() => {}, [])
 
     // appwriteService.getPosts([]).then((posts) => {
@@ -12,8 +12,6 @@ function AllUsers(){
     //         setPosts(posts.documents)
     //     }
     // })
-
-    
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -25,19 +23,19 @@ function AllUsers(){
         fetchUsers();
     }, []);
 
-    return(
+    return (
         <div className="w-full py-8">
             <Container>
-                <div className="flex flex-col items-center">
+                <div className="grid gap-6 grid-cols-1 place-items-center">
                     {users.map((user) => (
-                        <div key={user.$id} className="p-3 w-3/5"> 
-                                <UserCard {...user} />
-                        </div> 
+                        <div key={user.$id} className="w-full max-w-sm">
+                            <UserCard {...user} />
+                        </div>
                     ))}
-                </div>    
+                </div>
             </Container>
         </div>
-    )
+    );
 }
 
-export default AllUsers
+export default AllUsers;
